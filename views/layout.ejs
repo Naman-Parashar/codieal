@@ -3,14 +3,20 @@
         <title>
             <%= title %>
         </title>
+        <link rel="stylesheet" href="/css/layout.css">
+<!-- ehen ever ther is a script tag in body var or script tag it is put in this position -->
+        <%- style %>
     </head>
 
     <body>
 
-        <%- include('_header') %>
+        <%- include('_header.ejs'); %>
 
         <%- body %>   <!-- variable part it is filled by home or user page code -->
 
-        <%- include('_footer') %>
+        <%- include('_footer'); %>
+
+
+        <%- script %>
     </body>
 </html>
