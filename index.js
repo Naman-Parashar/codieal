@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const port = 8000;  // generally sites run on port 80.
+const db = require('./config/mongoose');
 const expressLayout = require('express-ejs-layouts')
 
 //we have to tell that allthe routes have some layout
