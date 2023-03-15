@@ -9,3 +9,6 @@ app.listen(port,function(err){
     }
     console.log(`Server is running on port: ${port}`);
 });
+
+// use express router
+app.use('/', require('./routes/index'));  // just like import 
