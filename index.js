@@ -2,6 +2,10 @@
 const express = require('express');
 const app = express();
 const port = 8000;  // generally sites run on port 80.
+const expressLayout = require('express-ejs-layouts')
+
+//we have to tell that allthe routes have some layout
+app.use(expressLayout);
 
 
 app.listen(port,function(err){
