@@ -4,12 +4,18 @@ const app = express();
 const port = 8000;  // generally sites run on port 80.
 const db = require('./config/mongoose');
 const expressLayout = require('express-ejs-layouts')
-
+const cookieParser = require('cookie-parser');
 //we have to tell that allthe routes have some layout
 app.use(expressLayout);
 
 // using static files
 app.use(express.static('./assets'));
+
+// to read through post requests
+app.use(express.urlencoded());
+
+// use cookie parser
+app.use(cookieParser());
 
 // now if we want to set difftrent link or script tag for diff pages we can just write it in those pages but due to layout
 // our link tag will in body and script before footer now we have to tell the page that whenever it encounter a
