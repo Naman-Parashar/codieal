@@ -1,8 +1,30 @@
 // render the user_profile page.
 module.exports.profile = function(req,res){
+    console.log(req.cookie);
     return res.render('user_profile',{
         title:'User Profile'
     })
+
+    // now we only have to show this page only when the user is logged in
+    // if(req.cookie.user_id){  // if the user_id is present
+    //     console.log('profile if block');
+    //     user.findById(req.cookie.user_id)
+    //     .then(function(user){
+    //         if(user){
+    //            return res.render('user_profile',{
+    //             title:"User profile",
+    //             user: user
+    //            });
+    //         }
+    //         return res.redirect('/user/signin');
+    //     })
+    //     .catch(function(err){
+    //         console.log("error in fiding user id", err);
+    //     });
+    // }
+    // else{
+    //     return res.redirect('/user/signin');
+    // }
 }
 
 module.exports.post = function(req,res){
