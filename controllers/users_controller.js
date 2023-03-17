@@ -71,5 +71,31 @@ module.exports.create = function(req,res){
 
 // sign in
 module.exports.create_session = function(req,res){
+    // steps to authenyication
+    //find the usser 
+    // handle user found 
+       // if found then handle password 
+       // create session
+    // handle user not found
+
+    user.findOne({email:req.body.email})
+    .then(function(user){
+        if(user){
+            console.log("if block");
+            if(user.password != req.body.password){
+                return res.redirect("back");
+            }
+
+            res.cookie("user_id",user.id);
+            return res.redirect("/users/profile");
+        }
+        else{
+            console.log("else block");
+            return res.redirect('back');
+        }
+    })
+    .catch(function(err){
+        console.log("Error:: user not found "+ err);
+    });
     
  }
