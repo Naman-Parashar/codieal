@@ -1,30 +1,26 @@
 // render the user_profile page.
 module.exports.profile = function(req,res){
-    console.log(req.cookie);
-    return res.render('user_profile',{
-        title:'User Profile'
-    })
-
     // now we only have to show this page only when the user is logged in
-    // if(req.cookie.user_id){  // if the user_id is present
-    //     console.log('profile if block');
-    //     user.findById(req.cookie.user_id)
-    //     .then(function(user){
-    //         if(user){
-    //            return res.render('user_profile',{
-    //             title:"User profile",
-    //             user: user
-    //            });
-    //         }
-    //         return res.redirect('/user/signin');
-    //     })
-    //     .catch(function(err){
-    //         console.log("error in fiding user id", err);
-    //     });
-    // }
-    // else{
-    //     return res.redirect('/user/signin');
-    // }
+    // console.log(req.cookies);
+    if(req.cookies.user_id){  // if the user_id is present
+        console.log('profile if block');
+        user.findById(req.cookies.user_id)
+        .then(function(user){
+            if(user){
+               return res.render('user_profile',{
+                title:"User profile",
+                user: user
+               });
+            }
+            return res.redirect('/users/signin');
+        })
+        .catch(function(err){
+            console.log("error in fiding user id", err);
+        });
+    }
+    else{
+        return res.redirect('/users/signin');
+    }
 }
 
 module.exports.post = function(req,res){
@@ -53,7 +49,6 @@ module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_password){
         return res.redirect('back');
     }
-
     user.create({
         name: req.body.name,
         email: req.body.email,
@@ -70,6 +65,8 @@ module.exports.create = function(req,res){
     //     console.log('IN THEN BLOCK');
     //     console.log(req.body.email);
     //     user.create(req.body)
+                                        // user.email = req.body.email; and all that i need.
+                                        // user.save();
     //     // .then(function(user){
     //         return res.redirect('/users/signin');
     // )}
@@ -103,11 +100,10 @@ module.exports.create_session = function(req,res){
     user.findOne({email:req.body.email})
     .then(function(user){
         if(user){
-            console.log("if block");
+            // console.log("if block");
             if(user.password != req.body.password){
                 return res.redirect("back");
             }
-
             res.cookie("user_id",user.id);
             return res.redirect("/users/profile");
         }
