@@ -1,0 +1,30 @@
+<header>
+   <a href="/"><p><b>CODIAL</b></p></a>
+
+    <ul>
+        <!-- if user is sign in then show name and log out btn -->
+        <% if (locals.user){ %>  
+            <li>
+                <a href="/users/profile/<%= locals.user.id %>">
+                    <%= user.name %>
+                </a>
+            </li>
+            <li>
+                <a href="/users/sign-out">Sign Out</a>
+            </li>
+            <!-- else show sign in and sign up btn -->
+        <% }else{ %>
+
+            <li>
+                <a href="/users/signin">Sign In</a>
+            </li>
+
+            <li>
+                <a href="/users/signup">Sign Up</a>
+            </li>
+
+
+        <% } %>
+    </ul>
+
+</header>
