@@ -23,8 +23,8 @@ const flash = require('connect-flash');
 const  customMiddlewareFlash = require('./config/middleware_flash');
 
 // setup the chat server to be used with socket.io
-const chatServer = require('http').Server(app);
-const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+const chatServer = require('http').Server(app);  // app = express();
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer); // chatSockrts(charServer) is a function defined in chat_socket config file
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
 

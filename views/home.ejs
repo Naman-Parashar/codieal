@@ -42,12 +42,14 @@
 </div>
 <script src="/js/home_post.js"></script>
 
-
+<!-- these script file is add to home page of our web app to make connection with js files -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
 <script src="/js/chat_engine.js"></script>
 
+
+<!--  we are initlizing the class in chat_engine (js folder) -->
 <% if(locals.user){ %>
 <script>
-    new ChatEngine('user-chat-box',' <%= locals.user._id %>');
+    new ChatEngine('user-chat-box',' <%= locals.user.email %>');
 </script>
 <% } %>
